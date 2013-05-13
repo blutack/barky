@@ -1,5 +1,5 @@
-barky
-=====
+[http://devtack.com/barky](Demo)
+---
 
 Javascript barcode navigation library, replaces links with barcodes.
 
