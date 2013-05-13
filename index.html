@@ -30,7 +30,7 @@
              <li>Up to 69 barcodes on a page[<a href="#f1">1</a>]</li>
              <li>Use onclick to fire javascript actions from barcodes</li>
          </ul>
-     </section>
+         <p>Built on top of <a href="https://github.com/lindell">Johan Lindells</a> excellent <a href="https://github.com/lindell/JsBarcode">JsBarcode</p>
      <section>
          <h4>Show Me!</h4>
          <a class="barky-action" href="http://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick?</a>
@@ -51,6 +51,10 @@
  &lt;a class="barky-action" href="http://www.youtube.com/watch?v=dQw4w9WgXcQ"&gt;Again!&lt;/a&gt;
  &lt;/div&gt;
          </code></pre></p>
+     </section>
+     <section>
+         <h4>Tell me!</h4>
+         <p>Barky.js looks through your page for links with the correct class. These links are then replaced with an ASCII codepoint between 58 (;) and 127 (DELETE) - hence the 69 limit. Barky keeps a lookup table in JS mapping codepoints to URLs. When you scan a barcode, Barky intercepts the keypress, looks up the URL and sends you to it.</p>
      </section>
       <footer>
         <p id="f1"><small>This project is maintained by <a href="https://github.com/blutack">blutack</a> | 
