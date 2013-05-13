@@ -42,8 +42,8 @@ Barky.setupOverlayLinks = function () {
     $(".barky-overlay > .barky-action").addClass("barky-overlay-link");
 
     // Insert link to open menu
-    $(".barky-overlay").parent().
-    append($("<a />", {
+    $(".barky-overlay").
+    after($("<a />", {
         href: '#',
         onclick: 'Barky.toggleOverlay()',
         class: 'barky-link barky-action'
