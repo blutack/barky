@@ -78,27 +78,29 @@ Barky.layoutOverlayLinks = function () {
     var width = 112;
     var height = 54;
 
-    var close = $('<a />', {
-        href: "#",
-        onclick: "Barky.toggleOverlay()",
-        class: "barky-overlay-close barky-overlay-link"
-    }).html("Close");
-    close.appendTo(document.body);
-    close.each(Barky.replaceWithBarcodes);
-    var elem = close.get()[0];
-    elem.style.position = 'absolute';
-    elem.style.left = $("#barky-overlay").width() - width - 10 + 'px';
-    elem.style.top = 10 + 'px';
-
-    $(".barky-overlay > .barky-action").each(function () {
-        var elem = $(this).get()[0];
-        x = ((150 + width) * Math.cos(angle)) + ($("#barky-overlay").width() / 2 - width);
-        y = ((150 + height) * Math.sin(angle)) + ($("#barky-overlay").height() / 2 - height);
+    if($(".barky-overlay > .barky-action").length) {
+        var close = $('<a />', {
+            href: "#",
+            onclick: "Barky.toggleOverlay()",
+            class: "barky-overlay-close barky-overlay-link"
+        }).html("Close");
+        close.appendTo(document.body);
+        close.each(Barky.replaceWithBarcodes);
+        var elem = close.get()[0];
         elem.style.position = 'absolute';
-        elem.style.left = x + 'px';
-        elem.style.top = y + 'px';
-        angle += increase;
-    });
+        elem.style.left = $("#barky-overlay").width() - width - 10 + 'px';
+        elem.style.top = 10 + 'px';
+
+        $(".barky-overlay > .barky-action").each(function () {
+            var elem = $(this).get()[0];
+            x = ((150 + width) * Math.cos(angle)) + ($("#barky-overlay").width() / 2 - width);
+            y = ((150 + height) * Math.sin(angle)) + ($("#barky-overlay").height() / 2 - height);
+            elem.style.position = 'absolute';
+            elem.style.left = x + 'px';
+            elem.style.top = y + 'px';
+            angle += increase;
+        });
+    }
 }
 
 // Taken from Johan Lindell's awesome JsBarcode
