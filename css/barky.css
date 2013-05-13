@@ -9,12 +9,12 @@
     -moz-opacity:0.8;
     -khtml-opacity: 0.8;
     opacity: 0.8;
-    z-index: 5;
+    z-index: 100;
 	display: none;
 }
 
 .barky-overlay-link {
 	position:absolute;
-	z-index: 10;
+	z-index: 101;
 	display: none;
 }

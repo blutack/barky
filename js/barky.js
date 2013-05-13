@@ -84,6 +84,7 @@ Barky.layoutOverlayLinks = function () {
             onclick: "Barky.toggleOverlay()",
             class: "barky-overlay-close barky-overlay-link"
         }).html("Close");
+        
         close.appendTo(document.body);
         close.each(Barky.replaceWithBarcodes);
         var elem = close.get()[0];
