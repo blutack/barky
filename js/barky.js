@@ -1,12 +1,14 @@
 var barky_urls = [];
 
+var overlay = $('<div id="overlay"> </div>');
+overlay.appendTo(document.body);
+
 $(".overlay > .action").each(
-	function() {
+	function(i) {
 		var text = $(this).html();
 		var href = $(this).attr("href");
-		barky_urls.push(href);
-		console.log(barky_urls.length);
-		$(this).html( $('<a />', {href: href}).html(DrawBarcode( barky_urls.length.toString(), text )) );
+		barky_urls.push({href: href, onclick: new Function($(this).attr("onclick")) });
+		$(this).html( DrawBarcode( barky_urls.length.toString(), text ) );
 	}
 );
 
@@ -14,19 +16,38 @@ $(".action").not(".overlay > .action").each(
 	function() {
 		var text = $(this).html();
 		var href = $(this).attr("href");
-		barky_urls.push(href);
-		$(this).html( $('<a />', {href: href}).html(DrawBarcode( barky_urls.length.toString(), text )) );
+		// Can't get onclick as a function proto, we'll just eval it...
+		barky_urls.push({href: href, onclick: new Function($(this).attr("onclick")) });
+		$(this).html( $('<a />', {href: href, class: 'barky-link'}).html(DrawBarcode( barky_urls.length.toString(), text )) );
+	}
+);
+
+$("#overlay").width()
+var increase = Math.PI * 2 / $(".overlay > .action").length;
+var x = 0, y = 0, angle = 0;
+
+$(".overlay > .action").each(
+	function(){
+		var width = 112;
+		var height = 54;
+		var elem = $(this).get()[0];
+		x = ((150 + width) * Math.cos(angle)) + ($("#overlay").width()/2 - width);
+		y = ((150 + height) * Math.sin(angle)) + ($("#overlay").height()/2 - height);
+		elem.style.position = 'absolute';
+		elem.style.left = x + 'px';
+		elem.style.top = y + 'px';
+		angle += increase;
 	}
 );
 
 $(document).keypress(function(event) {
 	if((48 <= event.which <= 57) && String.fromCharCode(event.which) < barky_urls.length) {
-		window.location = barky_urls[String.fromCharCode(event.which)]
+		if (typeof barky_urls[String.fromCharCode(event.which)].onclick == "function") {
+		    barky_urls[String.fromCharCode(event.which)].onclick();
+		}
+		window.location = barky_urls[String.fromCharCode(event.which)].href;
 	}
 });
-
-var overlay = jQuery('<div id="overlay"> </div>');
-overlay.appendTo(document.body);
 
 function DrawBarcode(url, text, options) {
 	var defaults = {
