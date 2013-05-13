@@ -1,4 +1,4 @@
-#overlay {
+#barky-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,9 +10,11 @@
     -khtml-opacity: 0.8;
     opacity: 0.8;
     z-index: 5;
+	display: none;
 }
 
-.barky-link {
-	position:relative;
+.barky-overlay-link {
+	position:absolute;
 	z-index: 10;
+	display: none;
 }
